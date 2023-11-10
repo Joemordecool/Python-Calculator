@@ -36,6 +36,8 @@ def click_event(key, event=None):
         if '=' in entry.get():
             entry.delete(0, tk.END)
         entry.insert(tk.END, key)
+ 
+# Get absolute path of the image       
 
 def resource_path(relative_path):
     """ Get absolute path to resource, works for dev and for PyInstaller """
