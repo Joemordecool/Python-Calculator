@@ -10,10 +10,13 @@ def click_event(key, event=None):
         # Safeguard against integer division
         if '/' in entry.get() and '.' not in entry.get():
             entry.insert(tk.END, ".0")
-			
+		
+        # Remove leading zeros
+        expression = entry.get().lstrip('0')
+  
         # Attempt to evaluate results
         try:
-            result = eval(entry.get())
+            result = eval(expression)
             entry.delete(0, tk.END)
             entry.insert(tk.END, str(result))
         except:
