@@ -1,4 +1,6 @@
 import tkinter as tk
+import os
+import sys
 
 # Button actions
 def click_event(key, event=None):
@@ -35,12 +37,23 @@ def click_event(key, event=None):
             entry.delete(0, tk.END)
         entry.insert(tk.END, key)
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+        
+        
+    return os.path.join(base_path, relative_path)
+
 # GUI Start
 
 window=tk.Tk()
 window.geometry("350x500")
 window.title("Calculator")
-logo=tk.PhotoImage(file='calculatorIcon.png')
+path=resource_path('calculatorIcon.png')
+logo=tk.PhotoImage(file=path)
 window.iconphoto(True, logo)
 window.bind('<Return>', lambda event: click_event('=', event))
 
